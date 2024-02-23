@@ -1,18 +1,23 @@
 #typed: false
 
 def bubble_sort(array_to_sort)
-  array_length = array_to_sort.length
-  swapped = false
-  for i in 0..array_length-2
-    for j in 0..array_length-2
-      if array_to_sort[j] > array_to_sort[j+1]
-        array_to_sort[j], array_to_sort[j+1] = array_to_sort[j+1], array_to_sort[j]
-        swapped = true
+  n = array_to_sort.length
+
+  loop do
+
+    sorted = false # Upon each loop, set sorted to false
+
+    (n - 1).times do |i|
+      if array_to_sort[i] > array_to_sort[i + 1]
+        # Swap the indexes with the below line
+        array_to_sort[i], array_to_sort[i + 1] = array_to_sort[i + 1], array_to_sort[i]
+        sorted = true # Set sorted to true, indicating a swap has been made
       end
     end
-    break if swapped == false
-    end
-
+    # Here we break the loop if sorted is false.
+    break if not sorted # Syntactic sugar for `break if sorted == false`
+  end
+  return array_to_sort # Return the array
 end
 
-puts bubble_sort([4,3,78,2,0,2]) # => [0,2,2,3,4,78]
+puts bubble_sort([4,3,78,2,0,2]).inspect # => [0,2,2,3,4,78]
